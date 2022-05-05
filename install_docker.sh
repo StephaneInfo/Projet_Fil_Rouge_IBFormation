@@ -20,7 +20,7 @@ sudo systemctl enable docker
 sudo systemctl start docker
 
 # build and run nginx and website
-docker build -name nginx nginx:latest
+docker build nginx:latest
 docker run --name webserver nginx
 
 # install docker compose
