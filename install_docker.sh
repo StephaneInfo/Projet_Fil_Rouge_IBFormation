@@ -5,12 +5,14 @@ sudo yum -y update
 sudo yum install -y git
 
 #get Dockerfile on repo
-mkdir -r site/temp && cd site/temp
+mkdir site && cd ~/site && mkdir temp && cd ~/site/temp
 git init
 git clone https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation.git
-cp dockerfile ./site
+cd Projet_Fil_Rouge_IBFormation/
+cp Dockerfile ~/site/
 cd ..
-rm -Rf temp/*
+cd ..
+rm -rf temp/
 
 # install docker
 curl -fsSL https://get.docker.com -o get-docker.sh
@@ -20,8 +22,8 @@ sudo systemctl enable docker
 sudo systemctl start docker
 
 # build and run nginx and website
-docker build nginx:latest
-docker run --name webserver nginx
+docker build -t website:v1 .
+docker run -d --name webserver website:v1
 
 # install docker compose
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
