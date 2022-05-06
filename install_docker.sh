@@ -1,5 +1,6 @@
 #!/bin/bash
 sudo yum -y update
+sudo yum -y git
 
 # install docker
 curl -fsSL https://get.docker.com -o get-docker.sh
