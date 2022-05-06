@@ -18,3 +18,6 @@ Le choix du serveur s'est porté sur appache et pour la création des machines v
 
 ## **Dockerfile** :
 
+#L'installation des machines vituelles :
+
+![Screenshot Vagrant1](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/Images/vagrant1.png)
