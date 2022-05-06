@@ -5,6 +5,7 @@ Le choix du serveur s'est porté sur appache.
 # Files
 
 **Vagrantfile** :
+
 -Lancement de la création des VM, avec docker. L'une d'entre elles aura Ansible et Jenkins installé
 -Configuration réseau en DHCP
 -Lancement d'un script install_docker.sh pour automatiser l'installation de Docker.
