@@ -1,18 +1,63 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+
 Vagrant.configure("2") do |config|
-  config.vm.define "docker" do |docker|
-    docker.vm.box = "geerlingguy/centos7"
-    docker.vm.network "private_network", type: "dhcp"
-    docker.vm.hostname = "docker"
-    docker.vm.provider "virtualbox" do |v|
-      v.name = "docker"
-      v.memory = 1024
-      v.cpus = 2
-    end
-    docker.vm.provision :shell do |shell|
-      shell.path = "install_docker.sh"
-    end
-  end
+		
+		workers=2
+	
+		config.vm.define "production" do |production|
+			production.vm.box = "geerlingguy/centos7"
+			production.vm.network "private_network", type: "static", ip: "192.168.99.12"
+			production.vm.hostname = "production"
+			
+			production.vm.provider "virtualbox" do |v|
+			  v.name = "production"
+			  v.memory = 1024
+			  v.cpus = 2
+			end
+			
+			production.vm.provision :shell do |shell|
+				shell.path = "install_jenkins.sh"
+				shell.args = ["worker", workers]
+			end
+		end
+
+
+		config.vm.define "staging" do |staging|
+			staging.vm.box = "geerlingguy/centos7"
+			staging.vm.network "private_network", type: "static", ip: "192.168.99.11"
+			staging.vm.hostname = "staging"
+			
+			staging.vm.provider "virtualbox" do |v|
+			  v.name = "staging"
+			  v.memory = 1024
+			  v.cpus = 2
+			end
+			
+			staging.vm.provision :shell do |shell|
+				shell.path = "install_jenkins.sh"
+				shell.args = ["worker", workers]
+			end
+		end
+
+	
+	
+	config.vm.define "jenkins" do |jenkins|
+		jenkins.vm.box = "geerlingguy/centos7"
+		jenkins.vm.network "private_network", type: "static", ip: "192.168.99.10"
+		jenkins.vm.hostname = "jenkins"
+		
+		jenkins.vm.provider "virtualbox" do |v|
+		  v.name = "jenkins"
+		  v.memory = 2048
+		  v.cpus = 2
+		end
+		
+		jenkins.vm.provision :shell do |shell|
+			shell.path = "install_jenkins.sh"
+			shell.args = ["master", workers]
+		end
+	end
+	
 end
