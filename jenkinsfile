@@ -97,8 +97,10 @@ pipeline {
      stage('Push image in production and deploy it') {
       agent any
       steps {
-          cd $WORKSPACE/ansible && ansible-playbook playbooks/deploy_app.yml  --private-key ../id_rsa -e env=prod
-          docker run -dit --name $IMAGE_NAME:IMAGE_TAG_LATEST -p 8081:80 master:5000/$IMAGE_NAME:IMAGE_TAG_LATEST
+          sh'''
+               cd $WORKSPACE/ansible && ansible-playbook playbooks/deploy_app.yml  --private-key ../id_rsa -e env=prod
+               docker run -dit --name $IMAGE_NAME:IMAGE_TAG_LATEST -p 8081:80 master:5000/$IMAGE_NAME:IMAGE_TAG_LATEST
+          '''
       }
      }
     }
