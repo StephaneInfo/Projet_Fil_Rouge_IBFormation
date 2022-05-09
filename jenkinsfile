@@ -12,7 +12,8 @@ pipeline {
              steps {
                 script {
                   sh '''
-                    sudo mkdir -p mkdir -p /home/vagrant/site
+                    rm -rf /home/vagrant/site/Projet_Fil_Rouge_IBFormation/
+                    sudo mkdir -p /home/vagrant/site
                     git clone https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation.git
                     cd site/Projet_Fil_Rouge_IBFormation/
                     docker build -t fil_rouge_gr3:$IMAGE_TAG_STAGING .
