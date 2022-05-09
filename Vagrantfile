@@ -43,21 +43,19 @@ Vagrant.configure("2") do |config|
 
 	
 	
-	config.vm.define "jenkins" do |jenkins|
-		jenkins.vm.box = "geerlingguy/centos7"
-		jenkins.vm.network "private_network", type: "static", ip: "192.168.99.10"
-		jenkins.vm.hostname = "jenkins"
+	config.vm.define "master" do |master|
+		master.vm.box = "geerlingguy/centos7"
+		master.vm.network "private_network", type: "static", ip: "192.168.99.10"
+		master.vm.hostname = "master"
 		
-		jenkins.vm.provider "virtualbox" do |v|
-		  v.name = "jenkins"
+		master.vm.provider "virtualbox" do |v|
+		  v.name = "master"
 		  v.memory = 2048
 		  v.cpus = 2
 		end
 		
-		jenkins.vm.provision :shell do |shell|
+		master.vm.provision :shell do |shell|
 			shell.path = "install_jenkins.sh"
 			shell.args = ["master", workers]
 		end
 	end
-	
-end
