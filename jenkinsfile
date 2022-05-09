@@ -17,7 +17,7 @@ pipeline {
                     cd $WORKSPACE/site
                     pwd
                     git clone https://github.com/stephaneinfo/projet_fil_rouge_ibformation.git
-                    cp -r $WORKSPACE/site/Projet_Fil_Rouge_IBFormation/* $WORKSPACE/site
+                    cp -r $WORKSPACE/site/Projet_Fil_Rouge_IBFormation/* .
                     docker build -t $IMAGE_NAME:$IMAGE_TAG_STAGING .
                     docker push master:5000/$IMAGE_NAME:$IMAGE_TAG_STAGING
                     sudo rm -rf $WORKSPACE/site/Projet_Fil_Rouge_IBFormation
