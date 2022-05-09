@@ -13,14 +13,14 @@ pipeline {
                 script {
                   sh '''
                     pwd
-                    mkdir -p /site/
-                    sudo cd /site/
+                    mkdir -p $WORKSPACE/site
+                    cd $WORKSPACE/site
                     pwd
                     git clone https://github.com/stephaneinfo/projet_fil_rouge_ibformation.git
-                    cp -r /site/Projet_Fil_Rouge_IBFormation/* /site/
+                    cp -r $WORKSPACE/site/Projet_Fil_Rouge_IBFormation/* $WORKSPACE/site
                     docker build -t $IMAGE_NAME:$IMAGE_TAG_STAGING .
                     docker push master:5000/$IMAGE_NAME:$IMAGE_TAG_STAGING
-                    sudo rm -rf /home/vagrant/site/Projet_Fil_Rouge_IBFormation/
+                    sudo rm -rf $WORKSPACE/site/Projet_Fil_Rouge_IBFormation
                   '''
                 }
              }
@@ -90,7 +90,7 @@ pipeline {
            steps {
                script {
                  sh '''
-                     cd $WORKSPACE/ansible && ansible-playbook playbooks/deploy_app.yml  --private-key ../id_rsa -e env=staging                   
+                     cd $WORKSPACE/site && ansible-playbook playbooks/deploy_app.yml  --private-key ../id_rsa -e env=staging                   
                  '''
                }
            }
@@ -101,7 +101,7 @@ pipeline {
       agent any
       steps {
           sh'''
-               cd $WORKSPACE/ansible && ansible-playbook playbooks/deploy_app.yml  --private-key ../id_rsa -e env=prod
+               cd $WORKSPACE/site && ansible-playbook playbooks/deploy_app.yml  --private-key ../id_rsa -e env=prod
                docker run -dit --name $IMAGE_NAME:IMAGE_TAG_LATEST -p 8081:80 master:5000/$IMAGE_NAME:IMAGE_TAG_LATEST
           '''
       }
