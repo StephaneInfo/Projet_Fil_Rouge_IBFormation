@@ -22,13 +22,13 @@ Le script de vagrantfile permet:
       - La machine virtuelle "Production", a l'IP 192.168.99.12
 
 
-## **install_jenkins.sh** https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/install_jenkins.sh
+## [**install_jenkins.sh**](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/install_jenkins.sh)
 
 Le script contenant dans ce fichier permet l'installation du serveur Jenkins. En effet, Jenkins va servir à l'automatisation du lancement des différentes parties nécessaires à l'intégration et le déploiement de notre application. De plus, jenkins va permettre la liaison entre les différentes machines du pilepeline et se charge de leurs connexion et inter-connexions via leur noms affectées au niveau du "vagrantfile".
 
 Après avoir installé jenkins sur la machine "Jenkins", nous avons opté pour la création d'un registre privé. En premier, ce registre privé va  prévenir notre site des fausses manipulations externes et publiques. En second, il permet l'hébergement des différentes images sur la machine "Jenkins".
 
-## **install_docker.sh** https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/install_docker.sh
+## [**install_docker.sh**](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/install_docker.sh)
 
 Dans le but de conteneuriser notre application et faciliter son déploiement, nous avons crée un script dans le fichier "install_docker.sh" qui permet d'automatiser:
 
@@ -36,12 +36,12 @@ Dans le but de conteneuriser notre application et faciliter son déploiement, no
     
     - L'installation de Docker-Compose
     
-## **Dockerfile** https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/Dockerfile
+## [**Dockerfile**](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/Dockerfile)
 
 Ce fichier contient le script qui permet de créer l'image utilisée dans notre cas qui est "Apache".
 
 # Illustration
-[I'm an inline-style link](https://www.google.com)
+
 
 Pour lancer notre pipeline, nous avons exécuté les commandes suivantes et dans ce qui suit l'output (tiré du dossier "Images":
 
