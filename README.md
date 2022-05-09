@@ -9,7 +9,7 @@ La création des fichiers et des scripts a été effectué dans l'ordre suivant:
 
 # Les fichiers
 
-[**Vagrantfile**](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/Vagrantfile)
+## [**Vagrantfile**](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/Vagrantfile)
 
 Le script de vagrantfile permet:
 - La création de trois VM. L'une d'entre elles (la machine principale appelée "Jenkins") aura Ansible, Jenkins et Docker installés.
