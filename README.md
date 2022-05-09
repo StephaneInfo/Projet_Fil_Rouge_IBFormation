@@ -20,11 +20,6 @@ Le script de vagrantfile permet:
       
       - La machine virtuelle "Production", a l'IP 192.168.99.12
 
-Pour ce faire, nous avons lancé la commande suivante:
-
-             vagrant up --provision
-         
- ![Screenshot Vagrant1](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/Images/vagrant1.png)
 
 ## **install_jenkins.sh** https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/install_jenkins.sh
 
@@ -43,6 +38,17 @@ Dans le but de conteneuriser notre application et faciliter son déploiement, no
 ## **Dockerfile** https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/Dockerfile
 
 Ce fichier contient le script qui permet de créer l'image utilisée dans notre cas qui est "Apache".
+
+# Illustration
+
+Pour lancer notre pipeline, nous avons exécuté les commandes suivantes et dans ce qui suit l'output:
+
+1) Cette commande permet la création des machines virtuelles définies dans le fichier "Vagrantfile"
+            
+            vagrant up --provision
+             
+         
+ ![Screenshot Vagrant1](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/Images/vagrant1.png)
 
 
 
