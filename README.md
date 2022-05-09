@@ -11,11 +11,13 @@ La création des fichiers et des scripts:
 
 ## **Vagrantfile** :
 Le script de vagrantfile permet:
-    - La création des trois VM. L'une d'entre elles (la machine principale appelée "Jenkins") aura Ansible, Jenkins et Docker installés.
+    - La création de trois VM. L'une d'entre elles (la machine principale appelée "Jenkins") aura Ansible, Jenkins et Docker installés.
     - La configuration réseau des machines en IP fixe :
          > La machine virtuelle "Jenkins" (ayant Ansible, Jenkins et Docker installés) a l'IP 192.168.99.10
          > La machine virtuelle "Staging", a l'IP 192.168.99.11
          > La machine virtuelle "Production", a l'IP 192.168.99.12
+         
+ ![Screenshot Vagrant1](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/Images/vagrant1.png)
 
 ## **install_docker.sh** :
 
@@ -31,7 +33,7 @@ Ce fichier contient le script qui permet de créer l'image utilisée dans notre 
 
 Le script contenant dans ce fichier permet l'installation du serveur Jenkins. En effet, Jenkins va servir à l'automatisation du lancement des différentes parties nécessaires à l'intégration et le déploiement de notre application. 
 
-# L'installation des machines vituelles :
 
 
-![Screenshot Vagrant1](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/Images/vagrant1.png)
+
+
