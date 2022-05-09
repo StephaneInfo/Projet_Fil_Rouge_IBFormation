@@ -16,10 +16,10 @@ pipeline {
                     mkdir -p $WORKSPACE/site
                     cd $WORKSPACE/site
                     git clone https://github.com/stephaneinfo/projet_fil_rouge_ibformation.git
-                    cp -fR $WORKSPACE/site/Projet_Fil_Rouge_IBFormation/* .
+                    cp -fR $WORKSPACE/site/projet_fil_rouge_ibformation/* .
                     docker build -t $IMAGE_NAME:$IMAGE_TAG_STAGING .
                     docker push master:5000/$IMAGE_NAME:$IMAGE_TAG_STAGING
-                    sudo rm -rf $WORKSPACE/site/Projet_Fil_Rouge_IBFormation
+                    sudo rm -rf $WORKSPACE/site/projet_fil_rouge_ibformation
                   '''
                 }
              }
