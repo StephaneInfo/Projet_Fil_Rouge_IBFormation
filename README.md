@@ -19,6 +19,10 @@ Le script de vagrantfile permet:
       - La machine virtuelle "Staging", a l'IP 192.168.99.11
       
       - La machine virtuelle "Production", a l'IP 192.168.99.12
+
+Pour ce faire, nous avons lancé la commande suivante:
+
+             vagrant up --provision
          
  ![Screenshot Vagrant1](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/Images/vagrant1.png)
 
