@@ -12,7 +12,7 @@ pipeline {
              steps {
                 script {
                   sh '''
-                    mkdir -p mkdir -p /home/vagrant/site
+                    sudo mkdir -p mkdir -p /home/vagrant/site
                     git clone https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation.git
                     cp site/Projet_Fil_Rouge_IBFormation/* .
                     rm -rf Projet_Fil_Rouge_IBFormation/
