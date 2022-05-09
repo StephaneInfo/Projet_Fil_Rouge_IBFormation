@@ -5,7 +5,7 @@ Nous avons opté pour le choix d'un serveur "Apache" et de "Vagrant" pour la cr�
 
 Nous avons procédé ainsi: 
 
-build (création de l'image) -> push (le push de l'image vers le registre privé)-> Deploy (Preprod) -> Test -> Deploy (Prod) -> Push (le push de l'image finale vers le registre privé) -> Monitor 
+- build (création de l'image) -> push (le push de l'image vers le registre privé)-> Deploy (Preprod) -> Test -> Deploy (Prod) -> Push (le push de l'image finale vers le registre privé) -> Monitor 
 
 La création des fichiers et des scripts a été effectué dans l'ordre suivant:
 
