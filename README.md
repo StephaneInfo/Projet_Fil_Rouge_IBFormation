@@ -3,7 +3,9 @@
 Déploiement d'un site WEB utilisant un pipeline (CI/CD) DevOps dans le cadre d'une formation chez IB_Groupe_Cegos Lyon, en mai 2022.
 Nous avons opté pour le choix d'un serveur "Apache" et de "Vagrant" pour la création des machines vituelles qui sont au nombre de 03.
 
-Nous avons procédé ainsi: build (création de l'image) -> push (le push de l'image vers le registre privé)-> Deploy (Preprod) -> Test -> Deploy (Prod) -> Push(le push de l'image finale vers le registre privé) -> Monitor 
+Nous avons procédé ainsi: 
+
+build (création de l'image) -> push (le push de l'image vers le registre privé)-> Deploy (Preprod) -> Test -> Deploy (Prod) -> Push(le push de l'image finale vers le registre privé) -> Monitor 
 
 La création des fichiers et des scripts a été effectué dans l'ordre suivant:
 
