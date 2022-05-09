@@ -25,6 +25,13 @@ Dans le but de conteneuriser notre application et faciliter son dépoloiement, n
 - 
 ## **Dockerfile** :
 
+Ce fichier contient le script qui permet de créer l'image utilisée dans notre cas qui est "Apache".
+
+## **install_jenkins.sh** :
+
+Le script contenant dans ce fichier permet l'installation du serveur Jenkins. En effet, Jenkins va servir à l'automatisation du lancement des différentes parties nécessaires à l'intégration et le déploiement de notre application. 
+
 # L'installation des machines vituelles :
+
 
 ![Screenshot Vagrant1](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/Images/vagrant1.png)
