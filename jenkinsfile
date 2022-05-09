@@ -73,13 +73,13 @@ pipeline {
           agent any
           steps {
              script {
-               sh ''
+               sh '''
                     docker tag $IMAGE_NAME:$IMAGE_TAG_STAGING master:5000/$IMAGE_NAME:IMAGE_TAG_LATEST
                     docker push master:5000/$IMAGE_NAME:IMAGE_TAG_LATEST
                '''
              }
           }
-      }
+    }
           
      stage('Push image in staging and deploy it') { 
            agent any
