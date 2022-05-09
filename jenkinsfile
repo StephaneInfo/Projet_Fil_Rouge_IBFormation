@@ -1,9 +1,9 @@
 pipeline {
      environment {
-       IMAGE_NAME = "alpinehelloworld"
-       IMAGE_TAG = "latest"
-       STAGING = "choco1992-staging"
-       PRODUCTION = "choco1992-production"
+       IMAGE_NAME = "fil_rouge_gr3"
+       IMAGE_TAG_LATEST = "latest"
+       IMAGE_TAG_STAGING = "staging"
+       PRODUCTION = "groupe3-production"
      }
      agent none
      stages {
@@ -11,7 +11,7 @@ pipeline {
              agent any
              steps {
                 script {
-                  sh 'docker build -t choco1992/$IMAGE_NAME:$IMAGE_TAG .'
+                  sh 'docker build -t groupe3/$IMAGE_NAME:$IMAGE_TAG_STAGING .'
                 }
              }
         }
@@ -19,23 +19,35 @@ pipeline {
             agent any
             steps {
                script {
-                 sh '''
-                    docker run --name $IMAGE_NAME -d -p 80:5000 -e PORT=5000 choco1992/$IMAGE_NAME:$IMAGE_TAG
+                 sh ''
+                    docker run -dit --name $IMAGE_NAME -d -p 80:8080 -e PORT=8080 groupe3/$IMAGE_NAME:$IMAGE_TAG_STAGING
                     sleep 5
                  '''
                }
             }
        }
+       stage ('Push Image on private docker registry') {
+          agent any
+          steps {
+             script {
+               sh ''
+                    docker tag groupe3/$IMAGE_NAME:$IMAGE_TAG_STAGING/localhost:5000
+                   docker push groupe3/$IMAGE_NAME:$IMAGE_TAG_STAGING
+               '''
+             }
+          }
+      }
        stage('Test image') {
            agent any
            steps {
               script {
                 sh '''
-                    curl http://172.17.0.1 | grep -q "Hello world!"
+                    curl http://172.17.0.1 | grep -q "Bootstrap"
                 '''
               }
            }
       }
+      
       stage('Clean Container') {
           agent any
           steps {
