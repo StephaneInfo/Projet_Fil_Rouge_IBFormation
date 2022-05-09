@@ -31,7 +31,9 @@ Après avoir installé jenkins sur la machine "Jenkins", nous avons opté pour l
 ## **install_docker.sh** 
 
 Dans le but de conteneuriser notre application et faciliter son déploiement, nous avons crée un script dans le fichier "install_docker.sh" qui permet d'automatiser:
+
     - L'installation de Docker
+    
     - L'installation de Docker-Compose
     
 ## **Dockerfile** 
