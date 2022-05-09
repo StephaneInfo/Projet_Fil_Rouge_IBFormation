@@ -43,7 +43,7 @@ Ce fichier contient le script qui permet de créer l'image utilisée dans notre 
 # Illustration
 
 
-Pour lancer notre pipeline, nous avons exécuté les commandes suivantes et dans ce qui suit l'output (tiré du dossier [Images](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/tree/main/Images):
+Pour lancer notre pipeline, nous avons exécuté les commandes suivantes et dans ce qui suit l'output (tiré du dossier [Images](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/tree/main/Images)):
 
 1) Cette commande permet la création des machines virtuelles définies dans le fichier "Vagrantfile"
             
