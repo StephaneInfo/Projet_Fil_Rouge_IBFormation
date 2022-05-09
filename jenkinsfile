@@ -8,7 +8,7 @@ pipeline {
      agent none
      stages {
          stage('Build image and push Image on private docker registry') {
-             agent any /**Master**/
+             agent any
              steps {
                 script {
                   sh '''
@@ -23,7 +23,7 @@ pipeline {
              }
         }
         stage('Run container based on builded image') {
-            agent any /**staging**/
+            agent any
             steps {
                script {
                  sh '''
@@ -46,7 +46,7 @@ pipeline {
       }
       
       stage ('Push Image on private docker registry') {
-          agent any /**staging**/
+          agent any
           steps {
              script {
                sh ''
@@ -71,7 +71,7 @@ pipeline {
      
      }
      stage('Push image in production and deploy it') {
-      agent any /* production*/
+      agent any
       steps {
           docker run -dit --name $IMAGE_NAME:$IMAGE_TAG_STAGING -p 8081:80 master:5000/$IMAGE_NAME:$IMAGE_TAG_STAGING
       }
