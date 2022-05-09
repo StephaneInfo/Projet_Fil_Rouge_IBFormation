@@ -21,11 +21,13 @@ JENKINS_HOME="/var/lib/jenkins"
 NOMBRE_WORKER=\$2
 echo worker number : \$NOMBRE_WORKER
 # Enable local dns on each server
-echo -e "192.168.99.10 jenkins" >> /etc/hosts
+echo -e "192.168.99.10 master" >> /etc/hosts
 i=1
 while [ \$i -le \$NOMBRE_WORKER ]
  do
-  echo -e "192.168.99.1\${i} worker\${i}" >> /etc/hosts
+  echo -e "192.168.99.11 staging" >> /etc/hosts
+  let i=i+1
+  echo -e "192.168.99.12 production" >> /etc/hosts
   let i=i+1
 done
 # Declare function
@@ -42,11 +44,7 @@ function waitforssh {
 i=1 
 if [ \$1 == "master" ]
 then 
-    # Install and start Jenkins serveur
-    yum install jenkins -y
-    systemctl daemon-reload
-    systemctl enable jenkins
-    systemctl start jenkins
+    
 
     echo -e "\nInstallation de Docker"
     yum install -y git
@@ -60,11 +58,21 @@ then
     sudo echo "jenkins        ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/jenkins
     sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
     sudo chmod +x /usr/local/bin/docker-compose
-    systemctl restart jenkins
     echo -e "\nInstallation de ansible"
-    yum install -y python3
+    sudo yum install -y python3
     curl -sS https://bootstrap.pypa.io/pip/3.6/get-pip.py | sudo python3
     /usr/local/bin/pip3 install ansible
+
+	mkdir -p /home/vagrant/registre     
+	docker run -d -p 5000:5000 --restart=always --name registry_fil_rouge -v /home/vagrant/registre:/var/lib/registry registry:2
+	
+	# Install and start Jenkins serveur
+    yum install jenkins -y
+    systemctl daemon-reload
+    systemctl enable jenkins
+    systemctl start jenkins
+
+
 
     ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa <<<y >/dev/null 2>&1
     mkdir -p \${JENKINS_HOME}/.ssh
@@ -83,6 +91,8 @@ then
         cat \${JENKINS_HOME}/.ssh/id_rsa.pub |  sshpass -p vagrant ssh -o StrictHostKeyChecking=no vagrant@192.168.99.12  "sudo su -c \"cat >>  ~jenkins/.ssh/authorized_keys\""
         let i=i+1
 	done
+
+	
 
     echo -e "For this Stack, you will use \$(ip -f inet addr show enp0s8 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p') IP Address\n" 
     echo "To finish Jenkins installation, please go to your prefered navigateur; launch this url : http://\$(ip -f inet addr show enp0s8 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'):8080 and paste this secret : \$(cat ~jenkins/secrets/initialAdminPassword)"    
