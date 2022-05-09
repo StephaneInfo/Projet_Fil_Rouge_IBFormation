@@ -39,9 +39,9 @@ Dans le but de conteneuriser notre application et faciliter son déploiement, no
 
 Ce fichier contient le script qui permet de créer l'image utilisée dans notre cas qui est "Apache".
 
-# Illustration
+# Alt-Illustration
 
-Pour lancer notre pipeline, nous avons exécuté les commandes suivantes et dans ce qui suit l'output:
+Pour lancer notre pipeline, nous avons exécuté les commandes suivantes et dans ce qui suit l'output (tiré du dossier "Images":
 
 1) Cette commande permet la création des machines virtuelles définies dans le fichier "Vagrantfile"
             
