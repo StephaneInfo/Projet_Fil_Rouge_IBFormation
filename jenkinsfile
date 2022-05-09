@@ -12,8 +12,10 @@ pipeline {
              steps {
                 script {
                   sh '''
-                    git clone https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation.git
-                    cd /home/vagrant/site/Projet_Fil_Rouge_IBFormation/
+                    sudo mkdir -p /home/vagrant/site/
+                    sudo cd /home/vagrant/site/
+                    sudo git clone https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation.git
+                    sudo cd /home/vagrant/site/Projet_Fil_Rouge_IBFormation/
                     docker build -t $IMAGE_NAME:$IMAGE_TAG_STAGING .
                     docker push master:5000/$IMAGE_NAME:$IMAGE_TAG_STAGING
                     sudo rm -rf /home/vagrant/site/Projet_Fil_Rouge_IBFormation/
