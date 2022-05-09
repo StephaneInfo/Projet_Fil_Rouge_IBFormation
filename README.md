@@ -9,9 +9,9 @@ build (création de l'image) -> push (le push de l'image vers le registre privé
 
 La création des fichiers et des scripts a été effectué dans l'ordre suivant:
 
-# Les fichiers
+## Les fichiers
 
-## [**Vagrantfile**](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/Vagrantfile)
+### [**Vagrantfile**](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/Vagrantfile)
 
 Le script de vagrantfile permet:
 - La création de trois VM. L'une d'entre elles (la machine principale appelée "Master") aura Ansible, Jenkins et Docker installés.
@@ -30,7 +30,7 @@ Le script contenant dans ce fichier permet l'installation du serveur Jenkins. En
 
 Après avoir installé jenkins sur la machine "Master", nous avons opté pour la création d'un registre privé. En premier, ce registre privé va  prévenir notre site des fausses manipulations externes et publiques. En second, il permet l'hébergement des différentes images sur la machine "Master".
 
-## [**install_docker.sh**](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/install_docker.sh)
+### [**install_docker.sh**](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/install_docker.sh)
 
 Dans le but de conteneuriser notre application et faciliter son déploiement, nous avons crée un script dans le fichier "install_docker.sh" qui permet d'automatiser:
 
@@ -38,11 +38,11 @@ Dans le but de conteneuriser notre application et faciliter son déploiement, no
     
     - L'installation de Docker-Compose
     
-## [**Dockerfile**](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/Dockerfile)
+### [**Dockerfile**](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/Dockerfile)
 
 Ce fichier contient le script qui permet de créer l'image utilisée dans notre cas qui est "Apache".
 
-# Illustration
+## Illustration
 
 
 Pour lancer notre pipeline, nous avons exécuté les commandes suivantes et dans ce qui suit l'output (tiré du dossier [Images](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/tree/main/Images)):
