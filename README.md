@@ -27,7 +27,7 @@ Le script contenant dans ce fichier permet l'installation du serveur Jenkins. En
 
 Après avoir installé jenkins sur la machine "Jenkins", nous avons opté pour la création d'un registre privé. En premier, ce registre privé va  prévenir notre site des fausses manipulations externes et publiques. En second, il permet l'hébergement des différentes images sur la machine "Jenkins".
 
-## **install_docker.sh** https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/install_docker.sh
+### **install_docker.sh** https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/install_docker.sh
 
 Dans le but de conteneuriser notre application et faciliter son déploiement, nous avons crée un script dans le fichier "install_docker.sh" qui permet d'automatiser:
 
@@ -35,11 +35,11 @@ Dans le but de conteneuriser notre application et faciliter son déploiement, no
     
     - L'installation de Docker-Compose
     
-## **Dockerfile** https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/Dockerfile
+### **Dockerfile** https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/Dockerfile
 
 Ce fichier contient le script qui permet de créer l'image utilisée dans notre cas qui est "Apache".
 
-# Alt-Illustration
+# Illustration
 
 Pour lancer notre pipeline, nous avons exécuté les commandes suivantes et dans ce qui suit l'output (tiré du dossier "Images":
 
