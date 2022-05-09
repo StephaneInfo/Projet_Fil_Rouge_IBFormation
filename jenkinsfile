@@ -14,8 +14,9 @@ pipeline {
                   sh '''
                     sudo rm -rf /home/vagrant/site
                     sudo mkdir -p /home/vagrant/site
+                    cd /home/vagrant/site/
                     git clone https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation.git
-                    cd site/Projet_Fil_Rouge_IBFormation/
+                    cd /home/vagrant/site/Projet_Fil_Rouge_IBFormation/
                     docker build -t fil_rouge_gr3:$IMAGE_TAG_STAGING .
                     docker push master:5000/$IMAGE_NAME:$IMAGE_TAG_STAGING
                     rm -rf Projet_Fil_Rouge_IBFormation/
