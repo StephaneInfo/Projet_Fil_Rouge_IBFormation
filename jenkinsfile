@@ -11,7 +11,13 @@ pipeline {
              agent any
              steps {
                 script {
-                  sh 'docker build -t groupe3/$IMAGE_NAME:$IMAGE_TAG_STAGING .'
+                  sh '''
+                    mkdir -p mkdir -p /home/vagrant/site
+                    git clone https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation.git
+                    cp site/Projet_Fil_Rouge_IBFormation/* .
+                    rm -rf Projet_Fil_Rouge_IBFormation/
+                    docker build -t fil_rouge_gr3:$IMAGE_TAG_STAGING .
+                  '''
                 }
              }
         }
@@ -19,7 +25,7 @@ pipeline {
             agent any
             steps {
                script {
-                 sh ''
+                 sh '''
                     docker run -dit --name $IMAGE_NAME -d -p 80:8080 -e PORT=8080 groupe3/$IMAGE_NAME:$IMAGE_TAG_STAGING
                     sleep 5
                  '''
