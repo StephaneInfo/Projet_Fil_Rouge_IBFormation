@@ -7,8 +7,8 @@ pipeline {
      }
      agent none
      stages {
-         stage('Build image') {
-             agent any
+         stage('Build image and push Image on private docker registry') {
+             agent any /**Master**/
              steps {
                 script {
                   sh '''
@@ -17,32 +17,23 @@ pipeline {
                     cp site/Projet_Fil_Rouge_IBFormation/* .
                     rm -rf Projet_Fil_Rouge_IBFormation/
                     docker build -t fil_rouge_gr3:$IMAGE_TAG_STAGING .
+                    docker push master:5000/$IMAGE_NAME:$IMAGE_TAG_STAGING
                   '''
                 }
              }
         }
         stage('Run container based on builded image') {
-            agent any
+            agent any /**staging**/
             steps {
                script {
                  sh '''
-                    docker run -dit --name $IMAGE_NAME -d -p 80:8080 -e PORT=8080 groupe3/$IMAGE_NAME:$IMAGE_TAG_STAGING
+                    docker run -dit --name $IMAGE_NAME:$IMAGE_TAG_STAGING -p 8081:80 master:5000/$IMAGE_NAME:$IMAGE_TAG_STAGING
                     sleep 5
                  '''
                }
             }
        }
-       stage ('Push Image on private docker registry') {
-          agent any
-          steps {
-             script {
-               sh ''
-                    docker tag groupe3/$IMAGE_NAME:$IMAGE_TAG_STAGING/localhost:5000
-                   docker push groupe3/$IMAGE_NAME:$IMAGE_TAG_STAGING
-               '''
-             }
-          }
-      }
+      
        stage('Test image') {
            agent any
            steps {
@@ -54,13 +45,25 @@ pipeline {
            }
       }
       
+      stage ('Push Image on private docker registry') {
+          agent any /**staging**/
+          steps {
+             script {
+               sh ''
+                    docker tag $IMAGE_NAME:$IMAGE_TAG_STAGING master:5000/$IMAGE_NAME:IMAGE_TAG_LATEST
+                    docker push master:5000/$IMAGE_NAME:IMAGE_TAG_LATEST
+               '''
+             }
+          }
+      }
+      
       stage('Clean Container') {
           agent any
           steps {
              script {
                sh '''
-                 docker stop $IMAGE_NAME
-                 docker rm $IMAGE_NAME
+                 docker stop $IMAGE_NAME:$IMAGE_TAG_STAGING
+                 docker rm $IMAGE_NAME:$IMAGE_TAG_STAGING
                '''
              }
           }
@@ -68,14 +71,10 @@ pipeline {
      
      }
      stage('Push image in production and deploy it') {
-       when {
-              expression { GIT_BRANCH == 'origin/master' }
-            }
-      agent any
-      environment {
-          HEROKU_API_KEY = credentials('heroku_api_key')
-      }  
-      
+      agent any /* production*/
+      steps {
+          docker run -dit --name $IMAGE_NAME:$IMAGE_TAG_STAGING -p 8081:80 master:5000/$IMAGE_NAME:$IMAGE_TAG_STAGING
+      }
+     
      }
-  }
 }
