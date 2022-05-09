@@ -12,14 +12,11 @@ pipeline {
              steps {
                 script {
                   sh '''
-                    sudo rm -rf /home/vagrant/site
-                    sudo mkdir -p /home/vagrant/site
-                    cd /home/vagrant/site/
                     git clone https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation.git
                     cd /home/vagrant/site/Projet_Fil_Rouge_IBFormation/
                     docker build -t $IMAGE_NAME:$IMAGE_TAG_STAGING .
                     docker push master:5000/$IMAGE_NAME:$IMAGE_TAG_STAGING
-                    sudo rm -rf /home/vagrant/site
+                    sudo rm -rf /home/vagrant/site/Projet_Fil_Rouge_IBFormation/
                   '''
                 }
              }
