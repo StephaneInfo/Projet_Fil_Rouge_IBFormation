@@ -6,7 +6,7 @@ echo -e "You will find vagrant provisionings logs below"  > ${LOGS_FILE}
 # Install Jenkins repositorie and upgrade system
 wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
 rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
-#yum upgrade -y
+yum upgrade -y
 
 # Add required dependencies for the jenkins package
 yum install java-11-openjdk sshpass vim epel-release -y
