@@ -13,9 +13,9 @@ La création des fichiers et des scripts a été effectué dans l'ordre suivant:
 Le script de vagrantfile permet:
 - La création de trois VM. L'une d'entre elles (la machine principale appelée "Jenkins") aura Ansible, Jenkins et Docker installés.
 - La configuration réseau des machines en IP fixe et via DNS, où chaque machine est contactée via son nom:
-      -  La machine virtuelle "Jenkins" (ayant Ansible, Jenkins et Docker installés) a l'IP 192.168.99.10
-      -  La machine virtuelle "Staging", a l'IP 192.168.99.11
-      -  La machine virtuelle "Production", a l'IP 192.168.99.12
+      La machine virtuelle "Jenkins" (ayant Ansible, Jenkins et Docker installés) a l'IP 192.168.99.10
+      La machine virtuelle "Staging", a l'IP 192.168.99.11
+      La machine virtuelle "Production", a l'IP 192.168.99.12
          
  ![Screenshot Vagrant1](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/Images/vagrant1.png)
 
