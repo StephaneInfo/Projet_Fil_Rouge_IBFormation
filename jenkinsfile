@@ -1,0 +1,105 @@
+pipeline {
+     environment {
+       IMAGE_NAME = "fil_rouge_gr3"
+       IMAGE_TAG_LATEST = "latest"
+       IMAGE_TAG_STAGING = "staging"
+       PRODUCTION = "groupe3-production"
+     }
+     agent none
+     stages {
+         stage('Build image and push Image on private docker registry') {
+             agent any
+             steps {
+                script {
+                  sh '''
+                    mkdir -p mkdir -p /home/vagrant/site
+                    git clone https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation.git
+                    cp site/Projet_Fil_Rouge_IBFormation/* .
+                    rm -rf Projet_Fil_Rouge_IBFormation/
+                    docker build -t fil_rouge_gr3:$IMAGE_TAG_STAGING .
+                    docker push master:5000/$IMAGE_NAME:$IMAGE_TAG_STAGING
+                  '''
+                }
+             }
+        }
+        stage('Run container based on builded image') {
+            agent any
+            steps {
+               script {
+                 sh '''
+                    docker run -dit --name $IMAGE_NAME:$IMAGE_TAG_STAGING -p 8081:80 master:5000/$IMAGE_NAME:$IMAGE_TAG_STAGING
+                    sleep 5
+                 '''
+               }
+            }
+       }
+      
+       stage('Test image') {
+           agent any
+           steps {
+              script {
+                sh '''
+                    curl http://172.17.0.1 | grep -q "Bootstrap"
+                '''
+              }
+           }
+      }
+      
+      stage('Clean Container') {
+          agent any
+          steps {
+             script {
+               sh '''
+                 docker stop $IMAGE_NAME:$IMAGE_TAG_STAGING
+                 docker rm $IMAGE_NAME:$IMAGE_TAG_STAGING
+               '''
+             }
+          }
+     }
+
+     stage('Prepare ansible environment') {
+            agent any
+            environment {
+                PRIVATE_KEY = credentials('private_keys_jenkins')
+            }
+            steps {
+                sh '''
+                     cp  $PRIVATE_KEY  id_rsa
+                     chmod 600 id_rsa
+                '''
+            }
+     }          
+     
+     stage ('Push Image on private docker registry') {
+          agent any
+          steps {
+             script {
+               sh '''
+                    docker tag $IMAGE_NAME:$IMAGE_TAG_STAGING master:5000/$IMAGE_NAME:IMAGE_TAG_LATEST
+                    docker push master:5000/$IMAGE_NAME:IMAGE_TAG_LATEST
+               '''
+             }
+          }
+    }
+          
+     stage('Push image in staging and deploy it') { 
+           agent any
+           steps {
+               script {
+                 sh '''
+                     cd $WORKSPACE/ansible && ansible-playbook playbooks/deploy_app.yml  --private-key ../id_rsa -e env=staging                   
+                 '''
+               }
+           }
+     }
+     
+    
+     stage('Push image in production and deploy it') {
+      agent any
+      steps {
+          cd $WORKSPACE/ansible && ansible-playbook playbooks/deploy_app.yml  --private-key ../id_rsa -e env=prod
+          docker run -dit --name $IMAGE_NAME:IMAGE_TAG_LATEST -p 8081:80 master:5000/$IMAGE_NAME:IMAGE_TAG_LATEST
+      }
+     }
+    }
+}
