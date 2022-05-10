@@ -54,8 +54,8 @@ pipeline {
           steps {
              script {
                sh '''
-                 docker stop $IMAGE_NAME:$IMAGE_TAG_STAGING
-                 docker rm $IMAGE_NAME:$IMAGE_TAG_STAGING
+                 docker stop $IMAGE_NAME
+                 docker rm -f $IMAGE_NAME
                '''
              }
           }
