@@ -18,6 +18,7 @@ pipeline {
                     git clone https://github.com/stephaneinfo/projet_fil_rouge_ibformation.git
                     cp -fR $WORKSPACE/site/projet_fil_rouge_ibformation/* .
                     docker build -t $IMAGE_NAME:$IMAGE_TAG_STAGING .
+                    docker tag $IMAGE_NAME:$IMAGE_TAG_STAGING master:5000/$IMAGE_NAME:$IMAGE_TAG_STAGING
                     docker push master:5000/$IMAGE_NAME:$IMAGE_TAG_STAGING
                     sudo rm -rf $WORKSPACE/site/projet_fil_rouge_ibformation
                   '''
@@ -72,17 +73,6 @@ pipeline {
             }
      }          
      
-     stage ('Push Image on private docker registry_staging') {
-          agent any
-          steps {
-             script {
-               sh '''
-                    docker tag $IMAGE_NAME:$IMAGE_TAG_STAGING master:5000/$IMAGE_NAME:$IMAGE_TAG_STAGING
-                    docker push master:5000/$IMAGE_NAME:$IMAGE_TAG_STAGING
-               '''
-             }
-          }
-    }
           
      stage('Push image in staging and deploy it') { 
            agent any
