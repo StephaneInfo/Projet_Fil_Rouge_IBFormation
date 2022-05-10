@@ -13,11 +13,6 @@ pipeline {
                 script {
                   sh '''
                     docker rm -f $IMAGE_NAME
-                   /* sudo rm -rf $WORKSPACE/site
-                    mkdir -p $WORKSPACE/site
-                    cd $WORKSPACE/site
-                    git clone https://github.com/stephaneinfo/projet_fil_rouge_ibformation.git
-                    cp -fR $WORKSPACE/site/projet_fil_rouge_ibformation/* . */
                     docker build -t $IMAGE_NAME:$IMAGE_TAG_STAGING .
                     docker tag $IMAGE_NAME:$IMAGE_TAG_STAGING master:5000/$IMAGE_NAME:$IMAGE_TAG_STAGING
                     docker push master:5000/$IMAGE_NAME:$IMAGE_TAG_STAGING
