@@ -1,6 +1,6 @@
 pipeline {
      environment {
-       IMAGE_NAME = "filRougeGr3"
+       IMAGE_NAME = "filrougegr3"
        IMAGE_TAG_LATEST = "latest"
        IMAGE_TAG_STAGING = "staging"
        PRODUCTION = "groupe3-production"
