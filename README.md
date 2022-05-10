@@ -45,8 +45,8 @@ Ce fichier contient le script qui permet de créer l'image utilisée dans notre 
 ### [**jenkinsfile**](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/jenkinsfile)
 
 Le script contenant dans ce fichier décrit les différentes étapes du lancement du pipeline. Effectivement, il permet de piloter toute la chaine CI/CD du projet.
-Le pipeline est composé des étapes suivantes:
 
+Le pipeline est composé des étapes suivantes:
 1) Build image and push Image on private docker registry
 2) Run container based on builded image
 3) Test image
