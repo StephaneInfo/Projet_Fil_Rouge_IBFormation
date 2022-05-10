@@ -1,0 +1,18 @@
+---
+- name: "Static Website Installation"
+  become: yes
+  hosts: "{{ env }}"
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+    - name: Create default containers
+      docker_container:
+        name: "static-website-ib"
+        image: "groupe3/static-website-ib:v1"
+        state: started
+        restart: "yes"
+        ports: "8081:80"
+        env:
+          PORT: "80"
+
+...
