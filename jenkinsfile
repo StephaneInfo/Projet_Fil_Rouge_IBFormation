@@ -30,7 +30,7 @@ pipeline {
             steps {
                script {
                  sh '''
-                    docker run -dit --name $IMAGE_NAME:$IMAGE_TAG_STAGING -p 8081:80 master:5000/$IMAGE_NAME:$IMAGE_TAG_STAGING
+                    docker run -dit --name $IMAGE_NAME -p 8081:80 master:5000/$IMAGE_NAME:$IMAGE_TAG_STAGING
                     sleep 5
                  '''
                }
@@ -106,7 +106,7 @@ pipeline {
       steps {
           sh'''
                cd $WORKSPACE/site && ansible-playbook playbooks/deploy_app.yml  --private-key ../id_rsa -e env=prod
-               docker run -dit --name $IMAGE_NAME:IMAGE_TAG_LATEST -p 8081:80 master:5000/$IMAGE_NAME:IMAGE_TAG_LATEST
+               docker run -dit --name $IMAGE_NAME -p 8081:80 master:5000/$IMAGE_NAME:IMAGE_TAG_LATEST
           '''
       }
      }
