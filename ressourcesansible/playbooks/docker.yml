@@ -35,10 +35,18 @@
         name: docker 
         state: latest
 
+    - name: "Configure insecure Registry"
+      ansible.builtin.copy:
+        src: "../files/daemon.json"
+        dest: "/etc/docker/daemon.json"
+        owner: root
+        group: root
+        mode: '0644'
+
     - name: Start and enable the Docker daemon
       service: 
         name: docker 
-        state: started 
+        state: restarted 
         enabled: yes
 
     - name: Add remote user to docker group
@@ -46,5 +54,6 @@
         name: "{{ ansible_user }}"
         groups: dockerroot
         append: yes
+
 
 ...

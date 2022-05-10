@@ -6,4 +6,3 @@ all:
     staging:
       hosts:
         staging:
-        
