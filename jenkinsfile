@@ -12,6 +12,7 @@ pipeline {
              steps {
                 script {
                   sh '''
+                    docker rm -f $IMAGE_NAME
                     sudo rm -rf $WORKSPACE/site
                     mkdir -p $WORKSPACE/site
                     cd $WORKSPACE/site
