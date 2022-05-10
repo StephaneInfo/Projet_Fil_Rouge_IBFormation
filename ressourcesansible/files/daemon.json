@@ -1,0 +1,3 @@
+{
+    "insecure-registries" : [ "jenkins:5000", "192.168.99.11:5000", "master:5000" ]
+}

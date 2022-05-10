@@ -8,7 +8,7 @@
     - name: Create default containers
       docker_container:
         name: "filrougegr3"
-        image: "master:5000/filrougegr3:{{ tagi }}"
+        image: "{{ REGISTRY_HOST }}:5000/{{ image }}"
         state: started
         restart: "yes"
         ports: "8081:80"
@@ -16,3 +16,4 @@
           PORT: "80"
 
 ...
+
