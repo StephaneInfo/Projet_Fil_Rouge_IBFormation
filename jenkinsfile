@@ -79,7 +79,7 @@ pipeline {
            steps {
                script {
                  sh '''
-                     cd $WORKSPACE/site/ressourcesansible/ && ansible-playbook playbooks/deploy_app.yml  --private-key ../id_rsa -e env=staging -e -image=$IMAGE_NAME:$IMAGE_TAG_STAGING               
+                     cd $WORKSPACE/site/ressourcesansible/ && ansible-playbook playbooks/deploy_app.yml  --private-key ../id_rsa -e env=staging -e imageb=$IMAGE_NAME:$IMAGE_TAG_STAGING               
                  '''
                }
            }
@@ -105,7 +105,7 @@ pipeline {
       agent any
       steps {
           sh'''
-               cd $WORKSPACE/site/ressourcesansible/ && ansible-playbook playbooks/deploy_app.yml  --private-key ../id_rsa -e env=prod -e -image=$IMAGE_NAME:$IMAGE_TAG_LATEST
+               cd $WORKSPACE/site/ressourcesansible/ && ansible-playbook playbooks/deploy_app.yml  --private-key ../id_rsa -e env=prod -e imageb=$IMAGE_NAME:$IMAGE_TAG_LATEST
           '''
       }
      }
