@@ -72,13 +72,13 @@ pipeline {
             }
      }          
      
-     stage ('Push Image on private docker registry') {
+     stage ('Push Image on private docker registry_staging') {
           agent any
           steps {
              script {
                sh '''
-                    docker tag $IMAGE_NAME:$IMAGE_TAG_STAGING master:5000/$IMAGE_NAME:IMAGE_TAG_LATEST
-                    docker push master:5000/$IMAGE_NAME:IMAGE_TAG_LATEST
+                    docker tag $IMAGE_NAME:$IMAGE_TAG_STAGING master:5000/$IMAGE_NAME:$IMAGE_TAG_STAGING
+                    docker push master:5000/$IMAGE_NAME:$IMAGE_NAME:$IMAGE_TAG_STAGING
                '''
              }
           }
@@ -95,6 +95,21 @@ pipeline {
            }
      }
      
+    
+    
+    stage ('Push Image on private docker registry_latest') {
+          agent any
+          steps {
+             script {
+               sh '''
+                    docker tag $IMAGE_NAME:IMAGE_TAG_LATEST master:5000/$IMAGE_NAME:IMAGE_TAG_LATEST
+                    docker push master:5000/$IMAGE_NAME:$IMAGE_NAME:IMAGE_TAG_LATEST
+               '''
+             }
+          }
+    }
+    
+    
     
      stage('Push image in production and deploy it') {
       agent any
