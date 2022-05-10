@@ -42,7 +42,7 @@ pipeline {
            steps {
               script {
                 sh '''
-                    curl http://172.17.0.1 | grep -q "Bootstrap"
+                    curl http://192.168.99.10:8081 | grep -q "Bootstrap"
                 '''
               }
            }
