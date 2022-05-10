@@ -80,7 +80,7 @@ pipeline {
            steps {
                script {
                  sh '''
-                     cd $WORKSPACE/site && ansible-playbook playbooks/deploy_app.yml  --private-key ../id_rsa -e env=staging                   
+                     cd $WORKSPACE/site/ressources\ ansible/ && ansible-playbook playbooks/deploy_app.yml  --private-key ../id_rsa -e env=staging                   
                  '''
                }
            }
@@ -106,7 +106,7 @@ pipeline {
       agent any
       steps {
           sh'''
-               cd $WORKSPACE/site && ansible-playbook playbooks/deploy_app.yml  --private-key ../id_rsa -e env=prod
+               cd $WORKSPACE/site/ressources\ ansible/ && ansible-playbook playbooks/deploy_app.yml  --private-key ../id_rsa -e env=prod
                docker run -dit --name $IMAGE_NAME -p 8081:80 master:5000/$IMAGE_NAME:IMAGE_TAG_LATEST
           '''
       }
