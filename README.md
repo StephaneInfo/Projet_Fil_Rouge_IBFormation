@@ -66,13 +66,13 @@ Pour lancer notre pipeline, nous avons exécuté les commandes suivantes et dans
             
             vagrant up --provision
 
-2) Il est nécéssaire de récupérer la clé privée de jenkins et l'enregistrer dans l'application jenkins :
+2) Il est nécéssaire de récupérer la clé privée de jenkins pour l'enregistrer dans l'application jenkins :
 
             sudo cat /var/lib/jenkins/.ssh/id_rsa
 
 3) Nous avons fait le choix de copier le contenu du résultat de la commande dans un fichier que nous avons enregistré sur l'ordinateur
  
-4) Après l'installation de jenkins sur la maschine master, on lance jenkins via un navigateur à l'adresse :
+4) Après l'installation de jenkins sur la machine master, on lance jenkins via un navigateur à l'adresse :
 
             192.168.99.10:8080
 
@@ -82,7 +82,11 @@ Pour lancer notre pipeline, nous avons exécuté les commandes suivantes et dans
 
 6) Dans le partie Adminsitrer jenkins, Gestion des plugins, disponibles, on cherche docker-builder-step afin de l'installer
 
-7)  
+7)  Toujours dans la partie Adminsitrer jenkins, Manage credentials, Stores scoped to Jenkins, cliquer sur jenkins puis sur Identifiants globaux (illimité)
+
+8)  Cliquer sur Ajouter des identifiants, choisir le type Secret file, cliquer sur Parcourir et prendre le fihier enregistré avec la clé privée de jenkins
+
+9) En ID, on a choisi private_keys_jenkins qui est utilisé dans le jenkinfile  
 
  
 
