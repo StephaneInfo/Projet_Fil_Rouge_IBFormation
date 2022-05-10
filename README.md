@@ -26,9 +26,9 @@ Le script de vagrantfile permet:
 
 ## [**install_jenkins.sh**](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/install_jenkins.sh)
 
-Le script contenant dans ce fichier permet l'installation du serveur Jenkins. En effet, Jenkins va servir à l'automatisation du lancement des différentes parties nécessaires à l'intégration et le déploiement de notre application. De plus, jenkins va permettre la liaison entre les différentes machines du pilepeline et se charge de leurs connexion et inter-connexions via leur noms affectées au niveau du "vagrantfile".
+Le script contenant dans ce fichier permet l'installation du serveur Jenkins. En effet, Jenkins va servir à l'automatisation du lancement des différentes parties nécessaires à l'intégration et le déploiement de notre application. De plus, jenkins va permettre la liaison entre les différentes machines du pilepeline et se charge de leurs connexion et inter-connexions via leur noms affectées au niveau du "vagrantfile". 
 
-Après avoir installé jenkins sur la machine "Master", nous avons opté pour la création d'un registre privé. En premier, ce registre privé va  prévenir notre site des fausses manipulations externes et publiques. En second, il permet l'hébergement des différentes images sur la machine "Master".
+Après avoir installé jenkins sur la machine "Master", nous avons opté pour la création d'un registre privé (Docker Private registry). En premier, ce registre privé va protéger notre site des fausses manipulations externes et publiques. En second, il permet l'hébergement des différentes images sur la machine "Master".
 
 ### [**install_docker.sh**](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/install_docker.sh)
 
@@ -41,6 +41,10 @@ Dans le but de conteneuriser notre application et faciliter son déploiement, no
 ### [**Dockerfile**](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/Dockerfile)
 
 Ce fichier contient le script qui permet de créer l'image utilisée dans notre cas qui est "Apache".
+
+### [**jenkinsfile**](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/jenkinsfile)
+
+Le script contenant dans ce fichier décrit les différentes étapes du lancement du pipeline. Effectivement, il permet de piloter toute la chaine CI/CD du projet.
 
 ## Illustration
 
