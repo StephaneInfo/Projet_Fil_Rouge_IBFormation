@@ -12,7 +12,7 @@ pipeline {
              steps {
                 script {
                   sh '''
-                    pwd
+                    sudo rm -rf $WORKSPACE/site
                     mkdir -p $WORKSPACE/site
                     cd $WORKSPACE/site
                     git clone https://github.com/stephaneinfo/projet_fil_rouge_ibformation.git
