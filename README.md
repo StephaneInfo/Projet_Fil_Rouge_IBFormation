@@ -26,7 +26,8 @@ Le script de vagrantfile permet:
 
 ## [**install_jenkins.sh**](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/install_jenkins.sh)
 
-Le script contenant dans ce fichier permet l'installation du serveur Jenkins. En effet, Jenkins va servir à l'automatisation du lancement des différentes parties nécessaires à l'intégration et le déploiement de notre application. De plus, jenkins va permettre la liaison entre les différentes machines du pilepeline et se charge de leurs connexion et inter-connexions via leur noms affectées au niveau du "vagrantfile". 
+Le script contenant dans ce fichier permet l'installation du serveur Jenkins. En effet, Jenkins va servir à l'automatisation du lancement des différentes parties nécessaires à l'intégration et le déploiement de notre application. De plus, ce script va permettre la liaison entre les différentes machines du pilepeline et se charge de leurs connexion via leur noms affectées au niveau du "vagrantfile".
+De plus, il y a l'automatisation de la copie de la clé publique de jenkins sur la machine "production" et "staging". 
 
 Après avoir installé jenkins sur la machine "Master", nous avons opté pour la création d'un registre privé (Docker Private registry). En premier, ce registre privé va protéger notre site des fausses manipulations externes et publiques. En second, il permet l'hébergement des différentes images sur la machine "Master".
 
@@ -57,17 +58,30 @@ Le pipeline est composé des étapes suivantes:
 8) Push image in production and deploy it 
 
 
-## Illustration
-
+## Marche à suivre
 
 Pour lancer notre pipeline, nous avons exécuté les commandes suivantes et dans ce qui suit l'output (tiré du dossier [Images](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/tree/main/Images)):
 
 1) Cette commande permet la création des machines virtuelles définies dans le fichier "Vagrantfile"
             
             vagrant up --provision
-             
-         
- ![Screenshot Vagrant1](https://github.com/StephaneInfo/Projet_Fil_Rouge_IBFormation/blob/main/Images/vagrant1.png)
+
+2) Il est nécéssaire de récupérer la clé privée de jenkins et l'enregistrer dans l'application jenkins :
+
+            sudo cat /var/lib/jenkins/.ssh/id_rsa
+
+3) Nous avons fait le choix de copier le contenu du résultat de la commande dans un fichier que nous avons enregistré sur l'ordinateur
+ 
+4) Après l'installation de jenkins sur la maschine master, on lance jenkins via un navigateur à l'adresse :
+
+            192.168.99.10:8080
+
+5) Il faut maintenant récupérer le mot de passe de jenkins et l'insérer dans le formulaire :
+
+        sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+6) 
+
  
 
 
