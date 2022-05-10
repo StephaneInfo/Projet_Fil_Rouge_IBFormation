@@ -80,7 +80,9 @@ Pour lancer notre pipeline, nous avons exécuté les commandes suivantes et dans
 
         sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
-6) 
+6) Dans le partie Adminsitrer jenkins, Gestion des plugins, disponibles, on cherche docker-builder-step afin de l'installer
+
+7)  
 
  
 
