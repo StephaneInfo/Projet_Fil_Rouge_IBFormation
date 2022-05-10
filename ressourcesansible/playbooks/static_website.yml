@@ -8,7 +8,7 @@
     - name: Create default containers
       docker_container:
         name: "filrougegr3"
-        image: "filrougegr3:latest"
+        image: "{{ image }}"
         state: started
         restart: "yes"
         ports: "8081:80"
